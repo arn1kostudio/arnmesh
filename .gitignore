@@ -1,0 +1,8 @@
+downloads/*.exe
+downloads/*.apk
+downloads/*.zip
+.preview-*.png
+.edge-cdp-profile/
+*.log
+.DS_Store
+Thumbs.db

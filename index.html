@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ArnMesh - Private Mesh Networking for Windows and Android</title>
+    <meta
+      name="description"
+      content="ArnMesh creates private encrypted mesh networks for your own devices and trusted friends. Download for Windows and Android."
+    />
+    <meta name="theme-color" content="#0b1013" />
+    <meta property="og:title" content="ArnMesh" />
+    <meta
+      property="og:description"
+      content="Private mesh networking for home access, trusted devices, and LAN-style play."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/preview/arnmesh-product-preview.png" />
+    <link rel="icon" href="assets/brand/arnmesh-icon.png" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#downloads">Skip to downloads</a>
+
+    <header class="site-header" data-elevate>
+      <a class="brand" href="#top" aria-label="ArnMesh home">
+        <img src="assets/brand/arnmesh-icon.png" alt="" />
+        <span>ArnMesh</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#uses">Use cases</a>
+        <a href="#security">Security</a>
+        <a href="#downloads">Download</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="nav-download" href="#downloads">
+        <i data-lucide="download"></i>
+        <span>Get ArnMesh</span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas id="mesh-canvas" aria-hidden="true"></canvas>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content reveal">
+          <p class="eyebrow">Private mesh networking</p>
+          <h1 id="hero-title">ArnMesh</h1>
+          <p class="hero-copy">
+            Create a private local-style network between your Windows PCs and Android devices.
+            Use it for home access, trusted device sharing, or LAN-style gaming with friends.
+          </p>
+          <div class="hero-actions" aria-label="Primary download actions">
+            <a
+              class="button button-primary"
+              href="#"
+              data-download="ArnMeshSetup.exe"
+              data-platform="windows"
+            >
+              <i data-lucide="monitor-down"></i>
+              <span>Download for Windows</span>
+            </a>
+            <a
+              class="button button-secondary"
+              href="#"
+              data-download="ArnMesh-Android-release.apk"
+              data-platform="android"
+            >
+              <i data-lucide="smartphone"></i>
+              <span>Download Android APK</span>
+            </a>
+          </div>
+          <p class="hero-note">Android is currently distributed as an APK until Play Store release.</p>
+        </div>
+      </section>
+
+      <section class="product-snapshot section-band" aria-labelledby="snapshot-title">
+        <div class="section-inner snapshot-grid">
+          <div class="section-copy reveal">
+            <p class="eyebrow">What it does</p>
+            <h2 id="snapshot-title">One private network for devices you trust.</h2>
+            <p>
+              ArnMesh pairs devices with QR codes or connection codes, keeps owner approval in
+              the loop, and gives each approved device a stable mesh address and hostname.
+            </p>
+            <div class="metric-row" aria-label="Core capabilities">
+              <div>
+                <strong>Windows</strong>
+                <span>Installer, service, tunnel engine</span>
+              </div>
+              <div>
+                <strong>Android</strong>
+                <span>VPN profile, QR join, status sync</span>
+              </div>
+              <div>
+                <strong>Relay</strong>
+                <span>Encrypted fallback when direct UDP is not reachable</span>
+              </div>
+            </div>
+          </div>
+          <figure class="product-image reveal">
+            <img
+              src="assets/preview/arnmesh-product-preview.png"
+              alt="ArnMesh app preview showing trusted devices in a private mesh network"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-band use-cases" id="uses" aria-labelledby="uses-title">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Built for two everyday setups</p>
+            <h2 id="uses-title">Home access and game nights, without changing the core network.</h2>
+          </div>
+          <div class="case-grid">
+            <article class="case-card reveal">
+              <i data-lucide="home"></i>
+              <h3>Home Access</h3>
+              <p>
+                Connect your own PC, phone, or laptop into one trusted private mesh. Reach devices
+                by stable mesh IPs and hostnames when you are away from home.
+              </p>
+            </article>
+            <article class="case-card reveal">
+              <i data-lucide="gamepad-2"></i>
+              <h3>Game Party</h3>
+              <p>
+                Invite friends into a controlled mesh for LAN-style play. The owner approves
+                devices, and trusted members can be allowed to invite more devices.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band features" aria-labelledby="features-title">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Current capabilities</p>
+            <h2 id="features-title">The pieces that are already in ArnMesh.</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card reveal">
+              <i data-lucide="qr-code"></i>
+              <h3>QR and code pairing</h3>
+              <p>Generate a short-lived invite, scan it on Android, or paste it on another PC.</p>
+            </article>
+            <article class="feature-card reveal">
+              <i data-lucide="shield-check"></i>
+              <h3>Owner approval</h3>
+              <p>New devices wait for approval before they can participate in the mesh.</p>
+            </article>
+            <article class="feature-card reveal">
+              <i data-lucide="network"></i>
+              <h3>Mesh addresses</h3>
+              <p>Approved devices receive managed 100.90.x.x addresses and .arnmesh hostnames.</p>
+            </article>
+            <article class="feature-card reveal">
+              <i data-lucide="radio-tower"></i>
+              <h3>Direct plus relay fallback</h3>
+              <p>ArnMesh prefers direct UDP and can fall back to a blind encrypted relay path.</p>
+            </article>
+            <article class="feature-card reveal">
+              <i data-lucide="settings-2"></i>
+              <h3>Profiles</h3>
+              <p>Keep separate networks for your own devices, friends, testing, or temporary groups.</p>
+            </article>
+            <article class="feature-card reveal">
+              <i data-lucide="key-round"></i>
+              <h3>Local private keys</h3>
+              <p>Private tunnel keys are intended to stay on the device, not on the coordinator.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band security" id="security" aria-labelledby="security-title">
+        <div class="section-inner security-grid">
+          <div class="section-copy reveal">
+            <p class="eyebrow">Security model</p>
+            <h2 id="security-title">Encrypted traffic, minimal coordinator metadata.</h2>
+            <p>
+              ArnMesh is not an anonymity VPN provider. It is a private mesh tool for devices you
+              approve. Tunnel payloads are encrypted between approved devices. The coordinator helps
+              with pairing, discovery, and relay fallback; it is not designed to receive private
+              keys or decrypted traffic.
+            </p>
+          </div>
+          <div class="security-list reveal" role="list">
+            <div role="listitem">
+              <i data-lucide="lock-keyhole"></i>
+              <span>HTTPS control plane with certificate pin support</span>
+            </div>
+            <div role="listitem">
+              <i data-lucide="database-zap"></i>
+              <span>Local profile and key storage on each device</span>
+            </div>
+            <div role="listitem">
+              <i data-lucide="user-check"></i>
+              <span>Owner-controlled device approval and invite permission</span>
+            </div>
+            <div role="listitem">
+              <i data-lucide="route"></i>
+              <span>Relay fallback forwards encrypted packets only</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band downloads" id="downloads" aria-labelledby="downloads-title">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Downloads</p>
+            <h2 id="downloads-title">Install ArnMesh on Windows and Android.</h2>
+            <p>
+              Windows uses an installer because ArnMesh includes a local service and tunnel engine.
+              Android is currently available as a sideload APK.
+            </p>
+          </div>
+          <div class="download-grid">
+            <article class="download-card reveal">
+              <div class="download-icon"><i data-lucide="monitor-cog"></i></div>
+              <h3>Windows</h3>
+              <p>Full installer for Windows PCs. Adds the app, local service, firewall rules, shortcuts, and uninstall entry.</p>
+              <a
+                class="button button-primary"
+                href="#"
+                data-download="ArnMeshSetup.exe"
+                data-platform="windows"
+              >
+                <i data-lucide="download"></i>
+                <span>Download installer</span>
+              </a>
+              <code data-hash="windows">SHA-256: 8A29207495AE14E5A933848E0C95EE9A967B59ED5AB09E42E2763858D3188A71</code>
+            </article>
+            <article class="download-card reveal">
+              <div class="download-icon"><i data-lucide="smartphone-charging"></i></div>
+              <h3>Android</h3>
+              <p>APK build for Android phones and tablets. Play Store release is not available yet.</p>
+              <a
+                class="button button-secondary"
+                href="#"
+                data-download="ArnMesh-Android-release.apk"
+                data-platform="android"
+              >
+                <i data-lucide="download"></i>
+                <span>Download APK</span>
+              </a>
+              <code data-hash="android">SHA-256: 5891D6A917CFA72A8A49BC66CDB2BF2DDF986A474B4E69E832A70F4DD36F9D6C</code>
+            </article>
+          </div>
+          <p class="download-note reveal">
+            For GitHub Pages, upload both files to the latest GitHub Release with the exact file
+            names shown above. The buttons will point to those release assets automatically.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-band faq" id="faq" aria-labelledby="faq-title">
+        <div class="section-inner faq-grid">
+          <div class="section-heading reveal">
+            <p class="eyebrow">FAQ</p>
+            <h2 id="faq-title">Questions people ask before installing.</h2>
+          </div>
+          <div class="faq-list">
+            <details class="reveal" open>
+              <summary>Is ArnMesh a normal VPN provider?</summary>
+              <p>
+                No. ArnMesh is for private mesh networks between your own approved devices and
+                trusted friends. It is not built to hide your identity or replace a commercial VPN.
+              </p>
+            </details>
+            <details class="reveal">
+              <summary>Does traffic go through the VPS?</summary>
+              <p>
+                ArnMesh tries direct UDP first. If relay fallback is needed, the relay forwards
+                encrypted packets; it should not need private keys or decrypted payloads.
+              </p>
+            </details>
+            <details class="reveal">
+              <summary>Why does Windows need an installer?</summary>
+              <p>
+                The Windows app includes a local service, tunnel engine, firewall rules, and an
+                uninstall entry. The installer sets those up so the app can work after reboot.
+              </p>
+            </details>
+            <details class="reveal">
+              <summary>Can I connect another PC or Android phone?</summary>
+              <p>
+                Yes. Create an invite from the owner device, scan or paste the code on the new
+                device, then approve the device from the owner profile.
+              </p>
+            </details>
+            <details class="reveal">
+              <summary>What is the Android status?</summary>
+              <p>
+                Android is currently distributed as an APK. That means you need to install it
+                manually until a Play Store listing exists.
+              </p>
+            </details>
+            <details class="reveal">
+              <summary>Will updates delete my profiles?</summary>
+              <p>
+                Normal updates replace app and service files. Profiles and keys are stored
+                separately from the install folder, so they are intended to survive updates.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand" href="#top" aria-label="ArnMesh home">
+          <img src="assets/brand/arnmesh-icon.png" alt="" />
+          <span>ArnMesh</span>
+        </a>
+        <p>Private mesh networking for trusted devices.</p>
+        <a class="github-link" href="#" data-github-link>
+          <i data-lucide="github"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="assets/js/site.js"></script>
+  </body>
+</html>
