@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#downloads">Skip to downloads</a>
+    <a class="skip-link" href="#hero-title">Skip to content</a>
 
     <header class="site-header" data-elevate>
       <a class="brand" href="#top" aria-label="ArnMesh home">
@@ -30,13 +30,8 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#uses">Use cases</a>
         <a href="#security">Security</a>
-        <a href="#downloads">Download</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="nav-download" href="#downloads">
-        <i data-lucide="download"></i>
-        <span>Get ArnMesh</span>
-      </a>
     </header>
 
     <main id="top">
@@ -158,8 +153,8 @@
             </article>
             <article class="feature-card reveal">
               <i data-lucide="radio-tower"></i>
-              <h3>Direct plus relay fallback</h3>
-              <p>ArnMesh prefers direct UDP and can fall back to a blind encrypted relay path.</p>
+              <h3>Direct + relay fallback</h3>
+              <p>ArnMesh tries direct UDP first, then falls back to a blind encrypted relay when needed.</p>
             </article>
             <article class="feature-card reveal">
               <i data-lucide="settings-2"></i>
@@ -208,52 +203,30 @@
         </div>
       </section>
 
-      <section class="section-band downloads" id="downloads" aria-labelledby="downloads-title">
+      <section class="section-band downloads" id="checksums" aria-labelledby="checksums-title">
         <div class="section-inner">
           <div class="section-heading reveal">
-            <p class="eyebrow">Downloads</p>
-            <h2 id="downloads-title">Install ArnMesh on Windows and Android.</h2>
+            <p class="eyebrow">Checksums</p>
+            <h2 id="checksums-title">Verify release files.</h2>
             <p>
-              Windows uses an installer because ArnMesh includes a local service and tunnel engine.
-              Android is currently available as a sideload APK.
+              Download buttons are at the top of the page. These SHA-256 hashes help verify the
+              current Windows installer and Android APK.
             </p>
           </div>
           <div class="download-grid">
             <article class="download-card reveal">
               <div class="download-icon"><i data-lucide="monitor-cog"></i></div>
-              <h3>Windows</h3>
-              <p>Full installer for Windows PCs. Adds the app, local service, firewall rules, shortcuts, and uninstall entry.</p>
-              <a
-                class="button button-primary"
-                href="#"
-                data-download="ArnMeshSetup.exe"
-                data-platform="windows"
-              >
-                <i data-lucide="download"></i>
-                <span>Download installer</span>
-              </a>
-                    <code data-hash="windows">SHA-256: 17521773C39093689168446973B8217C37B9DD4A7CCE80B19A02001F9469791F</code>
+              <h3>Windows installer</h3>
+              <p>ArnMeshSetup.exe</p>
+              <code data-hash="windows">SHA-256: 17521773C39093689168446973B8217C37B9DD4A7CCE80B19A02001F9469791F</code>
             </article>
             <article class="download-card reveal">
               <div class="download-icon"><i data-lucide="smartphone-charging"></i></div>
-              <h3>Android</h3>
-              <p>APK build for Android phones and tablets. Play Store release is not available yet.</p>
-              <a
-                class="button button-secondary"
-                href="#"
-                data-download="ArnMesh-Android-release.apk"
-                data-platform="android"
-              >
-                <i data-lucide="download"></i>
-                <span>Download APK</span>
-              </a>
-                    <code data-hash="android">SHA-256: ED738ABD61D9DC551F5E3C316B876E49E3B3C07D2F63DCA5CCE29F2C0D98ED19</code>
+              <h3>Android APK</h3>
+              <p>ArnMesh-Android-release.apk</p>
+              <code data-hash="android">SHA-256: ED738ABD61D9DC551F5E3C316B876E49E3B3C07D2F63DCA5CCE29F2C0D98ED19</code>
             </article>
           </div>
-          <p class="download-note reveal">
-            For GitHub Pages, upload both files to the latest GitHub Release with the exact file
-            names shown above. The buttons will point to those release assets automatically.
-          </p>
         </div>
       </section>
 
