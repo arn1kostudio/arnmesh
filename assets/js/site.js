@@ -34,7 +34,7 @@ function configureDownloads() {
     const owner = host.slice(0, -".github.io".length);
     githubLink.href = `https://github.com/${owner}/${pathRepo}`;
   } else if (githubLink) {
-    githubLink.href = "#downloads";
+    githubLink.href = "https://github.com/arn1kostudio/arnmesh";
   }
 }
 
