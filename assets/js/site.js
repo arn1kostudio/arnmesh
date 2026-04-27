@@ -65,6 +65,7 @@ function initMeshCanvas() {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let width = 0;
   let height = 0;
+  let lastFrame = performance.now();
 
   function resize() {
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -113,15 +114,19 @@ function initMeshCanvas() {
     }
   }
 
-  function draw() {
+  function draw(now = performance.now()) {
+    const delta = Math.min((now - lastFrame) / 16.67, 2);
+    const motionScale = prefersReducedMotion.matches ? 0.35 : 1;
+    lastFrame = now;
+
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = "#0b1013";
     ctx.fillRect(0, 0, width, height);
     drawGrid();
 
     for (const node of nodes) {
-      node.x += node.vx;
-      node.y += node.vy;
+      node.x += node.vx * delta * motionScale;
+      node.y += node.vy * delta * motionScale;
       if (node.x < -20) node.x = width + 20;
       if (node.x > width + 20) node.x = -20;
       if (node.y < -20) node.y = height + 20;
@@ -155,9 +160,7 @@ function initMeshCanvas() {
       ctx.globalAlpha = 1;
     }
 
-    if (!prefersReducedMotion.matches) {
-      requestAnimationFrame(draw);
-    }
+    requestAnimationFrame(draw);
   }
 
   canvas.addEventListener("pointermove", (event) => {
