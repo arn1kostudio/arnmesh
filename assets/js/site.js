@@ -15,6 +15,11 @@ function inferGitHubReleaseBase() {
 }
 
 function inferGitHubRepoUrl() {
+  const override = window.ARNMESH_GITHUB_REPO_URL;
+  if (typeof override === "string" && override.trim()) {
+    return override.trim().replace(/\/$/, "");
+  }
+
   const host = window.location.hostname;
   const pathRepo = window.location.pathname.split("/").filter(Boolean)[0];
   if (host.endsWith(".github.io") && pathRepo) {
@@ -53,15 +58,46 @@ function initSmoothAnchorScroll() {
     return;
   }
 
+  let scrollFrame = 0;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function getTargetTop(target) {
+    const headerOffset = header ? header.getBoundingClientRect().height + 24 : 24;
+    return Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerOffset);
+  }
+
+  function animateScroll(targetTop) {
+    if (prefersReducedMotion.matches) {
+      window.scrollTo(0, targetTop);
+      return;
+    }
+
+    const startTop = window.scrollY;
+    const distance = targetTop - startTop;
+    const duration = Math.min(820, Math.max(420, Math.abs(distance) * 0.6));
+    const startedAt = performance.now();
+
+    window.cancelAnimationFrame(scrollFrame);
+
+    function step(now) {
+      const progress = Math.min(1, (now - startedAt) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      window.scrollTo(0, startTop + distance * eased);
+      if (progress < 1) {
+        scrollFrame = window.requestAnimationFrame(step);
+      }
+    }
+
+    scrollFrame = window.requestAnimationFrame(step);
+  }
+
   function scrollToTarget(targetId) {
     const target = document.querySelector(targetId);
     if (!target) {
       return;
     }
 
-    const headerOffset = header ? header.getBoundingClientRect().height + 24 : 24;
-    const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerOffset);
-    window.scrollTo({ top, behavior: "smooth" });
+    animateScroll(getTargetTop(target));
   }
 
   internalLinks.forEach((link) => {
@@ -84,17 +120,19 @@ function initDownloadRedirect() {
     return;
   }
 
+  const releaseBase = inferGitHubReleaseBase();
   const localFallback = document.body.dataset.localFallback || "";
   const fallbackLink = document.querySelector("[data-fallback-link]");
   const status = document.querySelector("[data-redirect-status]");
   const releaseUrl = resolveReleaseAssetUrl(assetName, localFallback);
+  const usingLocalFallback = releaseBase === "downloads/" && Boolean(localFallback);
 
   if (fallbackLink) {
     fallbackLink.href = releaseUrl;
   }
 
   if (status) {
-    if (releaseUrl.startsWith("downloads/")) {
+    if (usingLocalFallback) {
       status.textContent =
         "Local preview mode detected. This page will use the local downloads folder unless a GitHub Release base is configured.";
     } else {
