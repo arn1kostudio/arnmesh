@@ -19,6 +19,6 @@ Open `index.html` in a browser. Download buttons use the local `downloads/` fold
 
 When ArnMesh is rebuilt:
 
-1. Upload the new `ArnMeshSetup.exe` and `ArnMesh-Android-release.apk` to the latest GitHub Release.
+1. Upload the new `ArnMeshSetup.zip` and `ArnMesh-Android-release.apk` to the latest GitHub Release.
 2. Update the SHA-256 strings in `index.html` if you want the page checksums to match the new release.
 3. Commit any text or design updates.
