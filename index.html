@@ -53,7 +53,7 @@
               <span class="status-chip status-violet" role="listitem">Owner approved</span>
               <span class="status-chip status-amber" role="listitem">Direct + relay</span>
             </div>
-            <div class="hero-actions" aria-label="Primary download actions">
+            <div class="hero-actions" id="downloads" aria-label="Primary download actions">
               <a class="button button-primary" href="downloads/windows/">
                 <i data-lucide="monitor-down"></i>
                 <span>Download for Windows (.zip)</span>
@@ -330,9 +330,9 @@
             <details class="reveal">
               <summary>Why is the main Windows download a zip?</summary>
               <p>
-                Some browsers are calmer with a zip than with a raw executable. The zip path keeps
-                the default download flow smoother, while the direct installer is still available
-                if you want the `.exe` itself.
+                Some browsers are calmer with a zip than with a raw executable. Right now the
+                public release is distributed as <code>ArnMeshSetup.zip</code>, so that is the
+                default Windows download path on the site.
               </p>
             </details>
             <details class="reveal">
@@ -393,6 +393,7 @@
     </footer>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="assets/js/site-config.js"></script>
     <script src="assets/js/site.js"></script>
   </body>
 </html>
