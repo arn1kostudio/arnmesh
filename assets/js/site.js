@@ -1,8 +1,3 @@
-const releaseAssets = {
-  windows: "ArnMeshSetup.exe",
-  android: "ArnMesh-Android-release.apk",
-};
-
 function inferGitHubReleaseBase() {
   const override = window.ARNMESH_RELEASE_BASE;
   if (typeof override === "string" && override.trim()) {
@@ -19,23 +14,97 @@ function inferGitHubReleaseBase() {
   return "downloads/";
 }
 
-function configureDownloads() {
-  const base = inferGitHubReleaseBase();
-  document.querySelectorAll("[data-download]").forEach((link) => {
-    const asset = link.dataset.download;
-    link.href = `${base}${asset}`;
-    link.setAttribute("download", asset);
-  });
-
+function inferGitHubRepoUrl() {
   const host = window.location.hostname;
   const pathRepo = window.location.pathname.split("/").filter(Boolean)[0];
-  const githubLink = document.querySelector("[data-github-link]");
-  if (githubLink && host.endsWith(".github.io") && pathRepo) {
+  if (host.endsWith(".github.io") && pathRepo) {
     const owner = host.slice(0, -".github.io".length);
-    githubLink.href = `https://github.com/${owner}/${pathRepo}`;
-  } else if (githubLink) {
-    githubLink.href = "https://github.com/arn1kostudio/arnmesh";
+    return `https://github.com/${owner}/${pathRepo}`;
   }
+
+  return "https://github.com/arn1kostudio/arnmesh";
+}
+
+function resolveReleaseAssetUrl(assetName, localFallback) {
+  if (!assetName) {
+    return null;
+  }
+
+  const base = inferGitHubReleaseBase();
+  if (base === "downloads/" && localFallback) {
+    return localFallback;
+  }
+  return `${base}${assetName}`;
+}
+
+function configureGitHubLink() {
+  const githubLink = document.querySelector("[data-github-link]");
+  if (!githubLink) {
+    return;
+  }
+
+  githubLink.href = inferGitHubRepoUrl();
+}
+
+function initSmoothAnchorScroll() {
+  const header = document.querySelector(".site-header");
+  const internalLinks = [...document.querySelectorAll('a[href^="#"]')];
+  if (!internalLinks.length) {
+    return;
+  }
+
+  function scrollToTarget(targetId) {
+    const target = document.querySelector(targetId);
+    if (!target) {
+      return;
+    }
+
+    const headerOffset = header ? header.getBoundingClientRect().height + 24 : 24;
+    const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerOffset);
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+
+  internalLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const { hash } = link;
+      if (!hash || hash === "#") {
+        return;
+      }
+
+      event.preventDefault();
+      history.replaceState(null, "", hash);
+      scrollToTarget(hash);
+    });
+  });
+}
+
+function initDownloadRedirect() {
+  const assetName = document.body.dataset.releaseAsset;
+  if (!assetName) {
+    return;
+  }
+
+  const localFallback = document.body.dataset.localFallback || "";
+  const fallbackLink = document.querySelector("[data-fallback-link]");
+  const status = document.querySelector("[data-redirect-status]");
+  const releaseUrl = resolveReleaseAssetUrl(assetName, localFallback);
+
+  if (fallbackLink) {
+    fallbackLink.href = releaseUrl;
+  }
+
+  if (status) {
+    if (releaseUrl.startsWith("downloads/")) {
+      status.textContent =
+        "Local preview mode detected. This page will use the local downloads folder unless a GitHub Release base is configured.";
+    } else {
+      status.textContent = "Redirecting to the latest GitHub Release asset...";
+    }
+  }
+
+  window.setTimeout(() => {
+    window.location.replace(releaseUrl);
+  }, 220);
 }
 
 function revealOnScroll() {
@@ -177,9 +246,11 @@ function initMeshCanvas() {
   draw();
 }
 
-configureDownloads();
+configureGitHubLink();
+initSmoothAnchorScroll();
 revealOnScroll();
 initMeshCanvas();
+initDownloadRedirect();
 
 if (window.lucide) {
   window.lucide.createIcons({
