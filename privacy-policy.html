@@ -23,7 +23,6 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.html#security">Network</a>
         <a href="index.html#uses">Modes</a>
-        <a href="index.html#downloads">Download</a>
         <a href="index.html#faq">FAQ</a>
       </nav>
     </header>
@@ -32,139 +31,95 @@
       <section class="policy-intro reveal">
         <p class="eyebrow">Privacy Policy</p>
         <h1 id="policy-title">ArnMesh Privacy Policy</h1>
-        <p>Effective date: April 27, 2026</p>
+        <p>Effective date: April 24, 2026</p>
       </section>
 
       <article class="policy-document reveal">
         <h2>Overview</h2>
         <p>
-          ArnMesh is a private mesh networking app for Windows PCs and Android
-          devices. It is designed to connect approved devices into a local-style
-          private network for home access, trusted device sharing, and LAN-style
-          gaming. ArnMesh is not an anonymity VPN provider and is not intended
-          to route all internet traffic through the app.
+          ArnMesh is a private mesh network tool for your own trusted devices.
+          It is designed to let Windows PCs and Android phones reach each other
+          through a controlled private mesh while keeping device keys, profiles,
+          and network membership data local whenever possible.
         </p>
 
-        <h2>Core privacy approach</h2>
+        <h2>Data Stored On Your Devices</h2>
         <p>
-          ArnMesh tries to keep private data on your devices. Profiles, local
-          settings, private keys, and tunnel configuration are intended to be
-          stored locally. The coordinator and relay exist to help devices find
-          each other, approve pairing, and fall back when direct UDP is not
-          reachable.
+          ArnMesh may store network profiles and profile names, device names and
+          platform labels, overlay IP addresses and mesh CIDR values, public
+          keys and public key fingerprints, private tunnel keys needed by that
+          device, pairing and approval state, direct endpoint candidates,
+          last-seen timestamps, and local connection status.
+        </p>
+        <p>
+          On Windows this data is managed by ArnMesh Service. On Android it is
+          stored inside the app private data folder.
         </p>
 
-        <h2>Information stored on your device</h2>
+        <h2>Pairing And Coordinator Data</h2>
         <p>
-          ArnMesh may store profiles, device names, device identifiers, mesh IP
-          addresses, .arnmesh hostnames, public keys, private tunnel keys,
-          management signing keys, invite tokens, pending requests, trusted
-          device permissions, app settings, service state, and diagnostic logs.
-          This data is needed for the app to remember your mesh networks and
-          reconnect after restarts or updates.
+          When a coordinator server is configured, ArnMesh may send the minimum
+          metadata needed for pairing and device discovery: network id, device
+          id, device name, platform, overlay IP, public key fingerprint, public
+          tunnel key, direct UDP endpoint candidates, approval status, and
+          last-seen timestamps.
+        </p>
+        <p>The coordinator is not intended to receive device private keys.</p>
+
+        <h2>Tunnel Traffic</h2>
+        <p>
+          ArnMesh tunnel payloads are encrypted between approved devices. The
+          coordinator can help devices discover each other, but it should not
+          need private keys or decrypted traffic.
+        </p>
+        <p>
+          In direct-only mode, packet traffic is sent directly between devices
+          and not through the coordinator. If relay fallback is configured, the
+          relay is intended to forward encrypted packets only.
         </p>
 
-        <h2>Information processed by the coordinator</h2>
+        <h2>Data ArnMesh Does Not Intentionally Collect</h2>
         <p>
-          When coordinator support is enabled, ArnMesh may send technical
-          metadata required for pairing, discovery, approvals, online status,
-          and relay fallback. This may include network/profile identifiers,
-          device identifiers, device names, platform type, public key
-          fingerprints, WireGuard public keys, mesh IP addresses, hostnames,
-          invite or approval state, trusted-device permissions, endpoint
-          candidates, public IP/port information visible to the server, last
-          seen times, and relay availability.
-        </p>
-        <p>
-          The coordinator should not receive your private WireGuard keys or
-          management signing private keys. Public keys and fingerprints may be
-          shared because other approved devices need them to establish secure
-          connections and verify management actions.
+          ArnMesh does not intentionally collect browsing history, file
+          contents, messages, contacts, photos, precise location history, or the
+          contents of RDP, SSH, game, browser, or app traffic.
         </p>
 
-        <h2>Relay fallback</h2>
+        <h2>Security Responsibility</h2>
         <p>
-          ArnMesh prefers direct UDP connections. If direct connectivity is not
-          available, relay fallback can forward encrypted tunnel packets between
-          approved devices. The relay is designed to be blind to decrypted
-          payloads, but it may still process technical metadata such as source
-          and destination endpoints, timing, packet sizes, connection state, and
-          traffic volume. The relay should not need private keys to operate.
+          ArnMesh is built to avoid publishing private data, but no app or
+          network connection can guarantee absolute protection. You are
+          responsible for keeping your devices, operating systems, passwords,
+          recovery accounts, and coordinator credentials secure.
+        </p>
+        <p>
+          To the maximum extent allowed by law, Arn1ko Studio is not responsible
+          for data loss, unauthorized access, or disclosure caused by
+          compromised devices, exposed credentials, third-party services, unsafe
+          networks, user configuration, malware, or use of experimental builds.
         </p>
 
-        <h2>Traffic routing</h2>
+        <h2>Security Notes</h2>
         <p>
-          ArnMesh is intended to route traffic for mesh devices, such as
-          100.90.x.x addresses and mesh hostnames. It is not designed to become
-          a full internet VPN by default. Your normal internet traffic should
-          continue to use your regular network unless you change system routing
-          or app settings outside the intended mesh workflow.
+          ArnMesh is still in active development. Early builds should be treated
+          as experimental. Do not rely on test builds as the only protection for
+          high-risk production systems until signed updates, audited storage
+          encryption, stronger server hardening, rate limits, and production
+          incident handling are complete.
         </p>
 
-        <h2>Permissions</h2>
+        <h2>Your Choices</h2>
         <p>
-          The Windows app may require administrator permission to install its
-          local service, tunnel driver usage, firewall rules, and uninstall
-          entry. The Android app may use Android VPN Service permission for the
-          mesh tunnel and may request camera access when QR code scanning is
-          used. Notifications may be used for status or background operation
-          when supported by the platform.
+          You can remove devices, reset local profiles, uninstall the app, or
+          delete coordinator-side network data when server management tools are
+          available. Removing a device stops it from being trusted by that
+          network profile.
         </p>
 
-        <h2>Downloads and updates</h2>
+        <h2>Changes</h2>
         <p>
-          ArnMesh for Windows and Android may be distributed through GitHub
-          Releases or other official Arn1ko Studio links. Download platforms,
-          browsers, operating systems, hosting providers, and app stores may
-          process technical download and security-check information according
-          to their own policies.
-        </p>
-
-        <h2>Data sharing</h2>
-        <p>
-          ArnMesh does not sell personal data and is not built around
-          advertising analytics. Technical data may be processed by services
-          required to operate the website, downloads, coordinator, relay, VPS
-          hosting, email support, operating systems, app stores, and GitHub.
-          If you invite another device, that approved device may receive mesh
-          metadata needed to connect to the profile.
-        </p>
-
-        <h2>Security and responsibility</h2>
-        <p>
-          ArnMesh uses encryption and approval flows to reduce risk, but no
-          network tool can guarantee perfect protection. You are responsible for
-          which devices you invite, which profiles you share, how you protect
-          your devices, and whether you install files from official sources.
-          To the maximum extent permitted by law, Arn1ko Studio is not
-          responsible for data loss, disclosure, compromise, unauthorized access,
-          or damage caused by user configuration, trusted or compromised
-          devices, copied invite codes, third-party hosting, network operators,
-          device malware, operating system behavior, unofficial or modified
-          builds, or events outside Arn1ko Studio's control.
-        </p>
-
-        <h2>Deleting data</h2>
-        <p>
-          You can remove local ArnMesh data by deleting profiles, resetting the
-          device in the app when available, clearing app data on Android, or
-          uninstalling ArnMesh. Some coordinator or relay metadata may remain in
-          server logs for operational, abuse-prevention, troubleshooting, or
-          security purposes for a limited time.
-        </p>
-
-        <h2>Children</h2>
-        <p>
-          ArnMesh is a technical networking utility and is not designed to
-          knowingly collect personal information from children.
-        </p>
-
-        <h2>Changes to this policy</h2>
-        <p>
-          This policy may be updated when ArnMesh features, coordinator
-          behavior, relay behavior, permissions, distribution, or hosting
-          changes. The effective date at the top of this page shows the latest
-          version.
+          This policy may change when ArnMesh adds production accounts, paid
+          plans, updater services, hosted coordinator features, or relay options.
         </p>
 
         <h2>Contact</h2>
@@ -194,6 +149,7 @@
     </footer>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="assets/js/site-config.js"></script>
     <script src="assets/js/site.js"></script>
   </body>
 </html>
